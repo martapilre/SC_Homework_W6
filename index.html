@@ -2,93 +2,95 @@
 <html>
 
     <head>
-        <title>Weather</title>
+
         <meta charset="UTF-8" />
-        <link href="src/styles.css" />
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
         <script src="https://kit.fontawesome.com/6efb908a8b.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+        <link rel="stylesheet" href="src/styles.css">
+        <title>My Weather App</title>
     </head>
 
     <body>
-        <div class="container caixa border rounded border-3 mt-5">
-            <div class="row align-items-center g-3 mb-2 mt-4">
-                <div class="col-7">
-                    <h3 class="country col-2" id="country">PT</h3>
-                    <h1 id="city" class="d-flex align-items-start">
-                        Santarém
-                    </h1>
-
-                    <p id="datatime">Sunday, 17:00</p>
-                </div>
-                <div class="col-5">
-                    <h5 id="weather">Cloudy</h5>
-                    <div class="units">
-                        <a href="#" id="celsius" class="selected">ºC</a> |
-                        <a href="#" id="fahrenheit">ºF</a>
+        <div class="container">
+            <div class="weather-app-wrapper">
+                <div class="weather-app">
+                    <div class="row">
+                        <div class="col-7">
+                            <h3 id="country"></h3>
+                            <h1 id="city"></h1>
+                            </h1>
+                            <img src="" alt="Clear" id="icon" class="float-left" />
+                        </div>
+                        <div class="col-5">
+                            <div class="clearfix weather-temperature">
+                                <h5 id="description">Cloudy</h5>
+                                <strong id="temperature"></strong><span class="units"><a href="#" id="celsius-link" class="active">°C</a> |
+                                    <a href="#" id="fahrenheit-link">°F</a></span>
+                            </div>
+                            <ul>
+                                <li>Humidity: <span id="humidity"></span>%</li>
+                                <li>Wind: <span id="wind"></span> km/h</li>
+                                <li><span id="date"></span></li>
+                            </ul>
+                        </div>
                     </div>
-                    <h1 id="temperature">
-                        12
-                    </h1>
+                    <form id="search-form" class="m-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="search" class="form-control" id="city-input" placeholder="Enter a city..." autocomplete="off" />
+                            </div>
+                            <div class="col-3">
+                                <input type="submit" value="Search" class="btn btn-primary w-100" />
+                            </div>
+                            <div class="col-3">
+                                <input type="submit" value="Current" class="btn btn-danger w-100" id="current-btn" />
+                            </div>
+                    </form>
+                </div>
 
-                    <p class="info">
-                        Humidity: <span class="bold">85%</span> Wind:
-                        <span class="bold">8km/h</span>
-                    </p>
+                <!-- Alterar quando for a previsao-->
+                <div class="row m-3">
+                    <div class="col-1"></div>
+                    <div class="col-2">
+                        <h3>Mon</h3>
+                        <i class="fa-solid fa-cloud-showers-heavy"></i>
+                        <p class="tempdays"><span class="bold">21º</span> 18º</p>
+                    </div>
+                    <div class="col-2">
+                        <h3>Tue</h3>
+                        <i class="fa-solid fa-wind"></i>
+                        <p class="tempdays"><span class="bold">21º</span> 18º</p>
+                    </div>
+                    <div class="col-2">
+                        <h3>Wed</h3>
+                        <i class="fa-solid fa-sun"></i>
+                        <p class="tempdays"><span class="bold">21º</span> 18º</p>
+                    </div>
+                    <div class="col-2">
+                        <h3>Thu</h3>
+                        <i class="fa-solid fa-sun"></i>
+                        <p class="tempdays"><span class="bold">21º</span> 18º</p>
+                    </div>
+                    <div class="col-2">
+                        <h3>Fri</h3>
+                        <i class="fa-solid fa-sun"></i>
+                        <p class="tempdays"><span class="bold">21º</span> 18º</p>
+                    </div>
+                    <div class="col-1"></div>
                 </div>
             </div>
+            <script src="https://kit.fontawesome.com/6efb908a8b.js" crossorigin="anonymous"></script>
+            <!--Fim-->
 
-            <br />
-            <form class="row" id="city-form">
-                <div class="col-6">
-                    <input type="text" class="form-control" id="input-city" placeholder="Enter a city..." />
-                </div>
-                <div class="col-3">
-                    <button type="submit" class="btn btn-primary btn-block search">
-                        Search
-                    </button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-danger btn-block current" id="currentBtn">
-                        Current
-                    </button>
-                </div>
-            </form>
-
-            <br />
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-2">
-                    <h3>Mon</h3>
-                    <i class="fa-solid fa-cloud-showers-heavy"></i>
-                    <p class="tempdays"><span class="bold">21º</span> 18º</p>
-                </div>
-                <div class="col-2">
-                    <h3>Tue</h3>
-                    <i class="fa-solid fa-wind"></i>
-                    <p class="tempdays"><span class="bold">21º</span> 18º</p>
-                </div>
-                <div class="col-2">
-                    <h3>Wed</h3>
-                    <i class="fa-solid fa-sun"></i>
-                    <p class="tempdays"><span class="bold">21º</span> 18º</p>
-                </div>
-                <div class="col-2">
-                    <h3>Thu</h3>
-                    <i class="fa-solid fa-sun"></i>
-                    <p class="tempdays"><span class="bold">21º</span> 18º</p>
-                </div>
-                <div class="col-2">
-                    <h3>Fri</h3>
-                    <i class="fa-solid fa-sun"></i>
-                    <p class="tempdays"><span class="bold">21º</span> 18º</p>
-                </div>
-                <div class="col-1"></div>
-            </div>
+            <small>
+                <a href="https://github.com/wecodeschool/vanilla-weather-app" target="_blank">Open-source code</a>
+                by <a href="http://www.martapilre.com" target="_blank">Marta Pilré</a>
+            </small>
         </div>
-        <script src="src/index.js"></script>
-        <script src="https://kit.fontawesome.com/6efb908a8b.js" crossorigin="anonymous"></script>
-        <p><a href="https://github.com/martapilre/SC_Homework_W6">My GitHub</a></p>
+        <script src="src/app.js"> </script>
     </body>
 
 </html>

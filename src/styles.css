@@ -1,96 +1,92 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: grey;
-  background: radial-gradient(
-    circle at 7.5% 24%,
-    rgb(237, 161, 193) 0%,
-    rgb(250, 178, 172) 25.5%,
-    rgb(190, 228, 210) 62.3%,
-    rgb(215, 248, 247) 93.8%
-  );
+    font-family: arial, sans-serif;
+    background-image: linear-gradient(to right, rgb(250, 206, 224), rgb(215, 248, 247));
 }
 
-h1,
-h5 {
-  color: #666;
-  font-weight: 700;
+h1 {
+    color: #333;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-bottom: 0;
 }
 
-input {
-  width: 100%;
-  height: 50px;
-}
-
-#datatime {
-  display: block;
-}
-
-.caixa {
-  background-color: #fff;
-}
-
-.city {
-  float: left;
-  display: inline;
-}
-
-.country {
-  font-size: 15px;
-  font-weight: bold;
-  float: right;
-}
-
-.btn {
-  width: 100%;
-  height: 50px;
-}
-
-.current {
-  background-color: rgb(237, 161, 193);
+h3 {
+    color: #333;
+    font-size: 20px;
 }
 
 a {
-  color: #1ab2a8;
+    text-decoration: none;
 }
 
-a:active {
-  color: #158078;
+ul {
+    margin: 0;
+    padding: 0;
 }
 
-a:hover {
-  text-decoration: none;
-  color: grey;
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: rgb(135, 135, 135);
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 19px;
 }
 
-h1 .temperature {
-  width: 100px !important;
+li:first-letter {
+    text-transform: capitalize;
 }
 
-.units {
-  margin: auto;
-  display: inline;
-  font-weight: 700;
-  float: right;
+.weather-app-wrapper {
+    max-width: 600px;
+    margin: 30px auto;
 }
 
-.btn-primary {
-  background-color: #1ab2a8;
-  border: #158078;
+.weather-app {
+    padding: 20px;
+    border: 10px solid #222;
+    background-color: white;
+    box-shadow: 30px 30px 2px 1px rgba(117, 116, 116, 0.2);
 }
 
-.btn-primary:hover {
-  background-color: #158078;
+.weather-app h3 {
+    font-size: 15px;
 }
 
-.selected {
-  color: #666;
-  text-decoration: none;
+.overview {
+    margin-bottom: 20px;
 }
 
-.bold {
-  font-weight: 700;
+.weather-temperature h5:first-letter {
+    text-transform: capitalize;
 }
 
-.tempdays {
-  color: #1ab2a8;
+.weather-temperature img {
+    margin-right: 5px;
+    height: 64px;
+    width: 64px;
+}
+
+.weather-temperature strong {
+    color: #333;
+    font-size: 64px;
+    line-height: 1;
+    font-weight: 400;
+}
+
+.weather-temperature .units {
+    position: relative;
+    font-size: 16px;
+    top: -34px;
+}
+
+.weather-temperature .active {
+    color: rgb(33, 33, 33);
+    cursor: default;
+}
+
+.weather-temperature .active:hover {
+    text-decoration: none;
 }
