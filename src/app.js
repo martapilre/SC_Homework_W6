@@ -1,4 +1,3 @@
-
 function formatDate(timestamp) {
     // calculate the date
     let date = new Date(timestamp);
@@ -72,9 +71,13 @@ function displayTemperature(response) {
 
     celsiusTemperature = response.data.temperature.current;
 
+
+    let country = response.data.country.charAt(0).toLowerCase() + response.data.country.slice(1);
+
     temperatureElement.innerHTML = Math.round(celsiusTemperature);
     cityElement.innerHTML = response.data.city;
-    countryElement.innerHTML = response.data.country;
+    countryElement.setAttribute("src", `https://countryflagsapi.com/png/${country}`);
+    countryElement.setAttribute("alt", response.data.country);
     descriptionElement.innerHTML = response.data.condition.description;
     humidityElement.innerHTML = response.data.temperature.humidity;
     windElement.innerHTML = response.data.wind.speed;
@@ -82,7 +85,7 @@ function displayTemperature(response) {
     iconElement.setAttribute("src", response.data.condition.icon_url);
     iconElement.setAttribute("alt", response.data.condition.icon);
 
-    getForecast(response.data.coordinates)
+    getForecast(response.data.coordinates);
 }
 
 
@@ -95,7 +98,10 @@ function search(city) {
 function handleSubmit(event) {
     event.preventDefault();
     let cityElement = document.querySelector("#city-input");
-    search(cityElement.value)
+    if (search(cityElement.value)) {
+        search(cityElement.value)
+    } else
+        alert("Please, enter a valid city!")
 }
 
 function displayFahrenheitTemperature(event) {

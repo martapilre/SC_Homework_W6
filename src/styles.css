@@ -47,6 +47,35 @@ li:first-letter {
     text-transform: capitalize;
 }
 
+#country {
+    width: 45px;
+    min-height: 30px;
+    border-radius: 50px;
+    box-shadow: 5px 5px 2px 1px rgba(117, 116, 116, 0.2);
+    margin: 10px 0;
+}
+
+.form-control {
+    border-radius: 0%;
+}
+
+.form-control:focus {
+    border-color: rgba(31, 151, 147, 0.8);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2) inset,
+        0 0 8px rgba(31, 151, 147, 0.6);
+}
+
+.btn-primary {
+    background-color: rgb(59, 181, 177);
+    border: 1px rgb(27, 137, 133);
+}
+
+.btn-danger {
+    background-color: rgb(245, 176, 205);
+    border: 1px rgb(150, 72, 104);
+}
+
+
 .weather-app-wrapper {
     max-width: 600px;
     margin: 30px auto;
