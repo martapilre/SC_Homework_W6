@@ -69,23 +69,30 @@ function displayTemperature(response) {
     let dateElement = document.querySelector('#date');
     let iconElement = document.querySelector('#icon');
 
-    celsiusTemperature = response.data.temperature.current;
+    try {
+        celsiusTemperature = response.data.temperature.current;
 
 
-    let country = response.data.country.charAt(0).toLowerCase() + response.data.country.slice(1);
+        let country = response.data.country.charAt(0).toLowerCase() + response.data.country.slice(1);
 
-    temperatureElement.innerHTML = Math.round(celsiusTemperature);
-    cityElement.innerHTML = response.data.city;
-    countryElement.setAttribute("src", `https://countryflagsapi.com/png/${country}`);
-    countryElement.setAttribute("alt", response.data.country);
-    descriptionElement.innerHTML = response.data.condition.description;
-    humidityElement.innerHTML = response.data.temperature.humidity;
-    windElement.innerHTML = response.data.wind.speed;
-    dateElement.innerHTML = formatDate(response.data.time * 1000);
-    iconElement.setAttribute("src", response.data.condition.icon_url);
-    iconElement.setAttribute("alt", response.data.condition.icon);
+        temperatureElement.innerHTML = Math.round(celsiusTemperature);
+        cityElement.innerHTML = response.data.city;
+        countryElement.setAttribute("src", `https://countryflagsapi.com/png/${country}`);
+        countryElement.setAttribute("alt", response.data.country);
+        countryElement.setAttribute("title", response.data.country);
+        descriptionElement.innerHTML = response.data.condition.description;
+        humidityElement.innerHTML = response.data.temperature.humidity;
+        windElement.innerHTML = response.data.wind.speed;
+        dateElement.innerHTML = formatDate(response.data.time * 1000);
+        iconElement.setAttribute("src", response.data.condition.icon_url);
+        iconElement.setAttribute("alt", response.data.condition.icon);
 
-    getForecast(response.data.coordinates);
+
+        getForecast(response.data.coordinates);
+    } catch (err) {
+        alert("Please, enter a valid city!")
+    }
+
 }
 
 
@@ -98,10 +105,7 @@ function search(city) {
 function handleSubmit(event) {
     event.preventDefault();
     let cityElement = document.querySelector("#city-input");
-    if (search(cityElement.value)) {
-        search(cityElement.value)
-    } else
-        alert("Please, enter a valid city!")
+    search(cityElement.value);
 }
 
 function displayFahrenheitTemperature(event) {
@@ -142,6 +146,10 @@ function currentPosition(position) {
     let lon = position.coords.longitude;
     let latlongUrl = `https://api.shecodes.io/weather/v1/current?lat=${lat}&lon=${lon}&key=f9328ad30706aefa211bt4fddce8obf6&units=metric`;
     axios.get(latlongUrl).then(displayTemperature);
+}
+
+function getCurrentCity() {
+    navigator.geolocation.getCurrentPosition(currentPosition);
 }
 
 search("Lisbon");
